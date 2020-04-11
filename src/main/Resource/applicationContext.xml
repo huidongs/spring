@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--UserService的创建权交给了Spring-->
+    <bean id="userService" class="pers.huidong.spring.demo1.UserServiceImpl">
+        <property name="name" value="huidong"></property>
+    </bean>
+    <!--Bean实例化的三种方式-->
+    <!--第一种：无参构造器的方式-->
+    <bean id="bean1" class="pers.huidong.spring.demo2.Bean1"></bean>
+    <!--第二种：无参构造器的方式-->
+    <!--第三种：无参构造器的方式-->
+
+</beans>
