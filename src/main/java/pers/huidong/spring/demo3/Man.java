@@ -38,7 +38,7 @@ public class Man implements BeanNameAware, BeanFactoryAware, InitializingBean, D
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("第四步:了解工厂的信息");
+        System.out.println("第四步:了解工厂的信息......");
     }
 
     @Override

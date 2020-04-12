@@ -23,6 +23,7 @@ public class SpringDemo3 {
         System.out.println(person1);
         System.out.println(person2);
     }
+
     @Test
     public void Bean2() {
         //创建工厂
@@ -33,4 +34,17 @@ public class SpringDemo3 {
         applicationContext.close();
 
     }
+
+    @Test
+    public void Bean3() {
+        //创建工厂
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //通过工厂获得类的实例
+        UserDao userDao = (UserDao) applicationContext.getBean("userDao");
+        userDao.findAll();
+        userDao.save();
+        userDao.update();
+        userDao.delete();
+    }
+
 }
