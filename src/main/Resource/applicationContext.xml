@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--====================================================以下是XML和注解方式混合使用========================================================================-->
+    <!--    <context:component-scan base-package="pers.huidong.spring.demo8"/>-->
+    <!-- 下面的表示只能用属性注入的注解   -->
+    <context:annotation-config/>
+    <bean id="categoryDao" class="pers.huidong.spring.demo8.CategoryDao"></bean>
+    <bean id="productDao" class="pers.huidong.spring.demo8.ProductDao"></bean>
+    <bean id="productService" class="pers.huidong.spring.demo8.ProductService"></bean>
+    <!--====================================================以下是注解方式========================================================================-->
+    <!--    开启注解扫描-->
+    <!--    <context:component-scan base-package="pers.huidong.spring.demo6"/>-->
+    <!--    <context:component-scan base-package="pers.huidong.spring.demo7"/>-->
+    <!--====================================================以下是配置XML方式=====================================================================-->
     <!--UserService的创建权交给了Spring-->
     <!--    <bean id="userService" class="pers.huidong.spring.demo1.UserServiceImpl">-->
     <!--        <property name="name" value="huidong"></property>-->
@@ -47,17 +59,57 @@
     <!--    </bean>-->
     <!--    Bean的p名称空间方法的属性注入-->
     <!--    <bean id="person" class="pers.huidong.spring.demo4.Person" p:name="huidong" p:age="21" p:cat-ref="cat"/>-->
-
     <!--    <bean id="cat" class="pers.huidong.spring.demo4.Cat" p:name="ketty"/>-->
     <!--    Bean的Spel的属性注入-->
-    <bean id="product" class="pers.huidong.spring.demo4.Product">
-        <property name="name" value="#{'男装'}"/>
-        <property name="price" value="#{productInfo.calculatePrice()}"/>
-        <property name="category" value="#{category}"/>
-    </bean>
-    <bean id="category" class="pers.huidong.spring.demo4.Category">
-        <property name="name" value="#{'服装'}"/>
-    </bean>
-    <bean id="productInfo" class="pers.huidong.spring.demo4.ProductInfo"></bean>
-
+    <!--    <bean id="product" class="pers.huidong.spring.demo4.Product">-->
+    <!--        <property name="name" value="#{'男装'}"/>-->
+    <!--        <property name="price" value="#{productInfo.calculatePrice()}"/>-->
+    <!--        <property name="category" value="#{category}"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="category" class="pers.huidong.spring.demo4.Category">-->
+    <!--        <property name="name" value="#{'服装'}"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="productInfo" class="pers.huidong.spring.demo4.ProductInfo"></bean>-->
+    <!--复杂类型属性注入-->
+    <!--    <bean id="collectionBean" class="pers.huidong.spring.demo5.CollectionBean">-->
+    <!--        <property name="arrs">-->
+    <!--            &lt;!&ndash;   数组类型&ndash;&gt;-->
+    <!--            <list>-->
+    <!--                <value>aaa</value>-->
+    <!--                <value>bbb</value>-->
+    <!--                <value>ccc</value>-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--        &lt;!&ndash;   list集合类型&ndash;&gt;-->
+    <!--        <property name="list">-->
+    <!--            <list>-->
+    <!--                <value>111</value>-->
+    <!--                <value>222</value>-->
+    <!--                <value>333</value>-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--        &lt;!&ndash;   set集合类型&ndash;&gt;-->
+    <!--        <property name="set">-->
+    <!--            <set>-->
+    <!--                <value>111</value>-->
+    <!--                <value>222</value>-->
+    <!--                <value>333</value>-->
+    <!--            </set>-->
+    <!--        </property>-->
+    <!--        &lt;!&ndash;   Map类型&ndash;&gt;-->
+    <!--        <property name="map">-->
+    <!--            <map>-->
+    <!--                <entry key="aaa" value="111"></entry>-->
+    <!--                <entry key="bbb" value="222"></entry>-->
+    <!--                <entry key="ccc" value="333"></entry>-->
+    <!--            </map>-->
+    <!--        </property>-->
+    <!--        &lt;!&ndash;   properties集合类型&ndash;&gt;-->
+    <!--        <property name="properties">-->
+    <!--            <props>-->
+    <!--                <prop key="username">huidong</prop>-->
+    <!--                <prop key="password">123</prop>-->
+    <!--            </props>-->
+    <!--        </property>-->
+    <!--    </bean>-->
 </beans>
