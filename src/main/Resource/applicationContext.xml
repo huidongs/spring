@@ -16,18 +16,40 @@
     <!--        <property name="interceptorNames" value="myBeforeAdvice"></property>-->
     <!--    </bean>-->
     <!--    带切入点的切面=======================-->
-    <bean id="customerDao" class="pers.huidong.spring_aop.demo4.CustomerDao"></bean>
-    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo4.MyAroundAdvice"></bean>
+    <!--    <bean id="customerDao" class="pers.huidong.spring_aop.demo4.CustomerDao"></bean>-->
+    <!--    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo4.MyAroundAdvice"></bean>-->
+    <!--    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">-->
+    <!--        &lt;!&ndash;        <property name="pattern" value=".*save.*"></property>&ndash;&gt;-->
+    <!--        <property name="pattern" value=".*save.*,.*delete.*"></property>-->
+    <!--        <property name="advice" ref="myAroundAdvice"></property>-->
+    <!--    </bean>-->
+    <!--    <bean id="customerDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+    <!--        <property name="target" ref="customerDao"></property>-->
+    <!--        <property name="proxyTargetClass" value="true"></property>-->
+    <!--        <property name="interceptorNames" value="myAdvisor"></property>-->
+    <!--    </bean>-->
+    <!--    传统aop的基于bean名称的自动代理==========-->
+    <!--    <bean id="studentDao" class="pers.huidong.spring_aop.demo5.StudentDaoImpl"></bean>-->
+    <!--    <bean id="customerDao" class="pers.huidong.spring_aop.demo5.CustomerDao"></bean>-->
+    <!--    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo5.MyAroundAdvice"></bean>-->
+    <!--    <bean id="myBeforeAdvice" class="pers.huidong.spring_aop.demo5.MyBeforeAdvice"></bean>-->
+    <!--    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">-->
+    <!--        <property name="beanNames" value="*Dao"></property>-->
+    <!--        <property name="interceptorNames" value="myBeforeAdvice"></property>-->
+    <!--    </bean>-->
+    <!--    传统aop的基于切面信息的自动代理==========-->
+    <bean id="studentDao" class="pers.huidong.spring_aop.demo6.StudentDaoImpl"></bean>
+    <bean id="customerDao" class="pers.huidong.spring_aop.demo6.CustomerDao"></bean>
+
+    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo6.MyAroundAdvice"></bean>
+    <bean id="myBeforeAdvice" class="pers.huidong.spring_aop.demo6.MyBeforeAdvice"></bean>
+
     <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-        <!--        <property name="pattern" value=".*save.*"></property>-->
-        <property name="pattern" value=".*save.*,.*delete.*"></property>
+        <property name="pattern" value="pers\.huidong\.spring_aop\.demo6\.CustomerDao\.save"></property>
         <property name="advice" ref="myAroundAdvice"></property>
     </bean>
-    <bean id="customerDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="customerDao"></property>
-        <property name="proxyTargetClass" value="true"></property>
-        <property name="interceptorNames" value="myAdvisor"></property>
-    </bean>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>
     <!--====================================================以下是XML和注解方式混合使用=============================================================-->
     <!--    <context:component-scan base-package="pers.huidong.spring_ioc.demo8"/>-->
     <!-- 下面的表示只能用属性注入的注解   -->
