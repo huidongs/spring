@@ -3,7 +3,32 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-    <!--====================================================以下是XML和注解方式混合使用========================================================================-->
+    <!--====================================================以下是学习aop的一些配置=============================================================-->
+    <!--    普通切面==========================-->
+    <!--        配置目标类-->
+    <!--    <bean id="studentDao"  class="pers.huidong.spring_aop.demo3.StudentDaoImpl"></bean>-->
+    <!--    前置通知类型-->
+    <!--    <bean id="myBeforeAdvice"   class="pers.huidong.spring_aop.demo3.MyBeforeAdvice"></bean>-->
+    <!--    Spring的Aop产生代理对象-->
+    <!--    <bean id="studentDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+    <!--        <property name="target" ref="studentDao"></property>-->
+    <!--        <property name="proxyInterfaces" value="pers.huidong.spring_aop.demo3.StudentDao"></property>-->
+    <!--        <property name="interceptorNames" value="myBeforeAdvice"></property>-->
+    <!--    </bean>-->
+    <!--    带切入点的切面=======================-->
+    <bean id="customerDao" class="pers.huidong.spring_aop.demo4.CustomerDao"></bean>
+    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo4.MyAroundAdvice"></bean>
+    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <!--        <property name="pattern" value=".*save.*"></property>-->
+        <property name="pattern" value=".*save.*,.*delete.*"></property>
+        <property name="advice" ref="myAroundAdvice"></property>
+    </bean>
+    <bean id="customerDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerDao"></property>
+        <property name="proxyTargetClass" value="true"></property>
+        <property name="interceptorNames" value="myAdvisor"></property>
+    </bean>
+    <!--====================================================以下是XML和注解方式混合使用=============================================================-->
     <!--    <context:component-scan base-package="pers.huidong.spring_ioc.demo8"/>-->
     <!-- 下面的表示只能用属性注入的注解   -->
     <!--    <context:annotation-config/>-->
