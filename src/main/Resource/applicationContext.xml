@@ -5,9 +5,23 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--====================================================以下是学习AspectJ方式aop的一些配置=============================================================-->
-    <aop:aspectj-autoproxy/>
-    <bean id="productDao" class="pers.huidong.spring_aspectJ.demo1.ProductDao"></bean>
-    <bean id="myAspect" class="pers.huidong.spring_aspectJ.demo1.MyAspect"></bean>
+<!--    注解方式===========-->
+<!--    <aop:aspectj-autoproxy/>-->
+<!--    <bean id="productDao" class="pers.huidong.spring_aspectJ.demo1.ProductDao"></bean>-->
+<!--    <bean id="myAspect" class="pers.huidong.spring_aspectJ.demo1.MyAspect"></bean>-->
+<!--    配置XML方式==========-->
+    <bean id="customerDao" class="pers.huidong.spring_aspectJ.demo2.CustomerImpl"></bean>
+    <bean id="myAspectXml" class="pers.huidong.spring_aspectJ.demo2.MyAspectXml"></bean>
+    <aop:config>
+<!--        配置切入点-->
+        <aop:pointcut id="pointcut1" expression="execution(* pers.huidong.spring_aspectJ.demo2.CustomerDao.save(..))"/>
+        <aop:pointcut id="pointcut2" expression="execution(* pers.huidong.spring_aspectJ.demo2.CustomerDao.delete(..))"/>
+<!--        配置aop的切面-->
+        <aop:aspect ref="myAspectXml">
+            <aop:before method="before" pointcut-ref="pointcut1"></aop:before>
+            <aop:after-returning method="afterReturning" pointcut-ref="pointcut2" returning="result"></aop:after-returning>
+        </aop:aspect>
+    </aop:config>
     <!--====================================================以下是学习传统方式aop的一些配置=============================================================-->
     <!--    普通切面==========================-->
     <!--        配置目标类-->
