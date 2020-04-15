@@ -2,8 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-    <!--====================================================以下是学习aop的一些配置=============================================================-->
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--====================================================以下是学习AspectJ方式aop的一些配置=============================================================-->
+    <aop:aspectj-autoproxy/>
+    <bean id="productDao" class="pers.huidong.spring_aspectJ.demo1.ProductDao"></bean>
+    <bean id="myAspect" class="pers.huidong.spring_aspectJ.demo1.MyAspect"></bean>
+    <!--====================================================以下是学习传统方式aop的一些配置=============================================================-->
     <!--    普通切面==========================-->
     <!--        配置目标类-->
     <!--    <bean id="studentDao"  class="pers.huidong.spring_aop.demo3.StudentDaoImpl"></bean>-->
@@ -38,18 +43,18 @@
     <!--        <property name="interceptorNames" value="myBeforeAdvice"></property>-->
     <!--    </bean>-->
     <!--    传统aop的基于切面信息的自动代理==========-->
-    <bean id="studentDao" class="pers.huidong.spring_aop.demo6.StudentDaoImpl"></bean>
-    <bean id="customerDao" class="pers.huidong.spring_aop.demo6.CustomerDao"></bean>
+    <!--    <bean id="studentDao" class="pers.huidong.spring_aop.demo6.StudentDaoImpl"></bean>-->
+    <!--    <bean id="customerDao" class="pers.huidong.spring_aop.demo6.CustomerDao"></bean>-->
 
-    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo6.MyAroundAdvice"></bean>
-    <bean id="myBeforeAdvice" class="pers.huidong.spring_aop.demo6.MyBeforeAdvice"></bean>
+    <!--    <bean id="myAroundAdvice" class="pers.huidong.spring_aop.demo6.MyAroundAdvice"></bean>-->
+    <!--    <bean id="myBeforeAdvice" class="pers.huidong.spring_aop.demo6.MyBeforeAdvice"></bean>-->
 
-    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-        <property name="pattern" value="pers\.huidong\.spring_aop\.demo6\.CustomerDao\.save"></property>
-        <property name="advice" ref="myAroundAdvice"></property>
-    </bean>
+    <!--    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">-->
+    <!--        <property name="pattern" value="pers\.huidong\.spring_aop\.demo6\.CustomerDao\.save"></property>-->
+    <!--        <property name="advice" ref="myAroundAdvice"></property>-->
+    <!--    </bean>-->
 
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>
+    <!--    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>-->
     <!--====================================================以下是XML和注解方式混合使用=============================================================-->
     <!--    <context:component-scan base-package="pers.huidong.spring_ioc.demo8"/>-->
     <!-- 下面的表示只能用属性注入的注解   -->
