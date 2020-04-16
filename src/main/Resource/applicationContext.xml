@@ -4,25 +4,35 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--====================================================以下是Spring JDBCTemplate的一些配置=============================================================-->
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/db_spring?serverTimezone=UTC"></property>-->
+<!--        <property name="username" value="root"></property>-->
+<!--        <property name="password" value="huidong"></property>-->
+<!--    </bean>-->
+<!--    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">-->
+<!--        <property name="dataSource" ref="dataSource"></property>-->
+<!--    </bean>-->
     <!--====================================================以下是学习AspectJ方式aop的一些配置=============================================================-->
-<!--    注解方式===========-->
-<!--    <aop:aspectj-autoproxy/>-->
-<!--    <bean id="productDao" class="pers.huidong.spring_aspectJ.demo1.ProductDao"></bean>-->
-<!--    <bean id="myAspect" class="pers.huidong.spring_aspectJ.demo1.MyAspect"></bean>-->
-<!--    配置XML方式==========-->
-    <bean id="customerDao" class="pers.huidong.spring_aspectJ.demo2.CustomerImpl"></bean>
-    <bean id="myAspectXml" class="pers.huidong.spring_aspectJ.demo2.MyAspectXml"></bean>
-    <aop:config>
-<!--        配置切入点-->
-        <aop:pointcut id="pointcut1" expression="execution(* pers.huidong.spring_aspectJ.demo2.CustomerDao.save(..))"/>
-        <aop:pointcut id="pointcut2" expression="execution(* pers.huidong.spring_aspectJ.demo2.CustomerDao.delete(..))"/>
-<!--        配置aop的切面-->
-        <aop:aspect ref="myAspectXml">
-            <aop:before method="before" pointcut-ref="pointcut1"></aop:before>
-            <aop:after-returning method="afterReturning" pointcut-ref="pointcut2" returning="result"></aop:after-returning>
-        </aop:aspect>
-    </aop:config>
-    <!--====================================================以下是学习传统方式aop的一些配置=============================================================-->
+    <!--    注解方式===========-->
+    <!--    <aop:aspectj-autoproxy/>-->
+    <!--    <bean id="productDao" class="pers.huidong.spring_aspectJ.demo1.ProductDao"></bean>-->
+    <!--    <bean id="myAspect" class="pers.huidong.spring_aspectJ.demo1.MyAspect"></bean>-->
+    <!--    配置XML方式==========-->
+    <!--    <bean id="customerDao" class="pers.huidong.spring_aspectJ.demo2.CustomerImpl"></bean>-->
+    <!--    <bean id="myAspectXml" class="pers.huidong.spring_aspectJ.demo2.MyAspectXml"></bean>-->
+    <!--    <aop:config>-->
+    <!--&lt;!&ndash;        配置切入点&ndash;&gt;-->
+    <!--        <aop:pointcut id="pointcut1" expression="execution(* pers.huidong.spring_aspectJ.demo2.CustomerDao.save(..))"/>-->
+    <!--        <aop:pointcut id="pointcut2" expression="execution(* pers.huidong.spring_aspectJ.demo2.CustomerDao.delete(..))"/>-->
+    <!--&lt;!&ndash;        配置aop的切面&ndash;&gt;-->
+    <!--        <aop:aspect ref="myAspectXml">-->
+    <!--            <aop:before method="before" pointcut-ref="pointcut1"></aop:before>-->
+    <!--            <aop:after-returning method="afterReturning" pointcut-ref="pointcut2" returning="result"></aop:after-returning>-->
+    <!--        </aop:aspect>-->
+    <!--    </aop:config>-->
+    <!--====================================================以下是学习传统方式aop的一些配置=================================================================-->
     <!--    普通切面==========================-->
     <!--        配置目标类-->
     <!--    <bean id="studentDao"  class="pers.huidong.spring_aop.demo3.StudentDaoImpl"></bean>-->
@@ -69,14 +79,14 @@
     <!--    </bean>-->
 
     <!--    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>-->
-    <!--====================================================以下是XML和注解方式混合使用=============================================================-->
-    <!--    <context:component-scan base-package="pers.huidong.spring_ioc.demo8"/>-->
+    <!--====================================================以下是XML和注解方式混合使用=================================================================-->
+    <!--   <context:component-scan base-package="pers.huidong.spring_ioc.demo8"/>-->
     <!-- 下面的表示只能用属性注入的注解   -->
     <!--    <context:annotation-config/>-->
     <!--    <bean id="categoryDao" class="pers.huidong.spring_ioc.demo8.CategoryDao"></bean>-->
     <!--    <bean id="productDao" class="pers.huidong.spring_ioc.demo8.ProductDao"></bean>-->
     <!--    <bean id="productService" class="pers.huidong.spring_ioc.demo8.ProductService"></bean>-->
-    <!--====================================================以下是注解方式========================================================================-->
+    <!--====================================================以下是注解方式===========================================================================-->
     <!--    开启注解扫描-->
     <!--    <context:component-scan base-package="pers.huidong.spring_ioc.demo6"/>-->
     <!--    <context:component-scan base-package="pers.huidong.spring_ioc.demo7"/>-->
