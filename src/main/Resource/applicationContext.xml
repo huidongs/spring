@@ -4,6 +4,19 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--====================================================以下是SpringMVC的一些配置=============================================================-->
+    <bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/test1">testHandler</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="testHandler" class="pers.huidong.springmvc.MyHandler"></bean>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
     <!--====================================================以下是Spring JDBCTemplate的一些配置=============================================================-->
 <!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
 <!--        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>-->
